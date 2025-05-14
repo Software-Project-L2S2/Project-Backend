@@ -1,8 +1,8 @@
-﻿namespace HRWorkForceSystemBackend.Models;
+﻿namespace HRWorkForceSystemBackend.Models.AuthModels;
 
 public class HRUser
 {
-
+     
     public int Id { get; set; }
 
     public string FirstName { get; set; } = string.Empty;

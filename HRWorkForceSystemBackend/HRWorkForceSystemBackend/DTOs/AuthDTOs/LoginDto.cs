@@ -1,4 +1,4 @@
-﻿namespace HRWorkForceSystemBackend.DTOs
+﻿namespace HRWorkForceSystemBackend.DTOs.AuthDTOs
 {
     public class LoginDto
     {

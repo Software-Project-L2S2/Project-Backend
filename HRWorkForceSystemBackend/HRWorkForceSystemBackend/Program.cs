@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using HRWorkForceSystemBackend.Models;
 using HRWorkForceSystemBackend.Services;
 using Microsoft.OpenApi.Models;
+using HRWorkForceSystemBackend.Models.AuthModels;
 
 
 

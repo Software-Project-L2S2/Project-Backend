@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HRWorkForceSystemBackend.Data;
-    
-namespace HRWorkForceSystemBackend.Models
+
+namespace HRWorkForceSystemBackend.Models.AuthModels
 {
     public static class DataSeeder
     {

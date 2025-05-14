@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HRWorkForceSystemBackend.Data;
-using HRWorkForceSystemBackend.Models;
-using HRWorkForceSystemBackend.DTOs;
+using HRWorkForceSystemBackend.Models.AuthModels;
 using HRWorkForceSystemBackend.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using HRWorkForceSystemBackend.DTOs.AuthDTOs;
 
 namespace HRWorkForceSystemBackend.Controllers
 {
@@ -28,89 +28,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
         private static string GenerateOtp() => new Random().Next(100000, 999999).ToString();
 
-        //[HttpPost("register-admin")]
-        //public async Task<IActionResult> RegisterAdmin([FromBody] RegisterRequestDto request)
-        //{
-        //    if (await _context.Admins.AnyAsync())
-        //        return BadRequest("Admin already exists.");
-
-        //    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
-        //    string otp = GenerateOtp();
-
-        //    var admin = new Admin
-        //    {
-        //        FirstName = request.FirstName,
-        //        LastName = request.LastName,
-        //        Email = request.Email,
-        //        PasswordHash = hashedPassword,
-        //        PhoneNumber = request.PhoneNumber
-        //    };
-
-        //    await _context.Admins.AddAsync(admin);
-        //    await _context.SaveChangesAsync();
-
-        //    _otpStore[admin.Email] = (otp, DateTime.UtcNow.AddMinutes(10));
-
-        //    await _emailService.SendEmailAsync(
-        //        admin.Email,
-        //        "Your Admin Email Verification OTP",
-        //        $"<h3>Hello {admin.FirstName},</h3><p>Your OTP is: <b>{otp}</b></p><p>This code will expire in 10 minutes.</p>"
-        //    );
-
-        //    return Ok(new
-        //    {
-        //        message = "Admin registered. OTP sent to email for verification."
-        //    });
-
-        //}
-
-        //[HttpPost("verify-admin-otp")]
-        //public async Task<IActionResult> VerifyAdminOtp([FromBody] VerifyOtpDto request)
-        //{
-        //    if (!_otpStore.TryGetValue(request.Email, out var otpData))
-        //        return BadRequest("OTP not found or expired.");
-
-        //    var (storedOtp, expiresAt) = otpData;
-
-        //    if (DateTime.UtcNow > expiresAt)
-        //    {
-        //        _otpStore.Remove(request.Email);
-        //        return BadRequest("OTP expired.");
-        //    }
-
-        //    if (storedOtp != request.Otp)
-        //        return BadRequest("Invalid OTP.");
-
-        //    var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == request.Email);
-        //    if (admin == null)
-        //        return NotFound("Admin not found.");
-
-        //    _otpStore.Remove(request.Email);
-        //    return Ok("Admin email verified successfully.");
-        //}
-
-        //[HttpPost("resend-otp")]
-        //public async Task<IActionResult> ResendOtp([FromBody] ResendOtpRequestDto request)
-        //{
-        //    var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == request.Email);
-        //    if (admin == null)
-        //        return NotFound("Admin not found.");
-
-        //    string newOtp = GenerateOtp();
-        //    _otpStore[admin.Email] = (newOtp, DateTime.UtcNow.AddMinutes(10));
-
-        //    await _emailService.SendEmailAsync(
-        //        admin.Email,
-        //        "Your New Admin OTP",
-        //        $"<p>Your new OTP is: <b>{newOtp}</b>. It will expire in 10 minutes.</p>"
-        //    );
-
-        //    return Ok(new { message = "New OTP sent to email." });
-        //}
-
-
-
-
+        
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
@@ -329,6 +247,16 @@ namespace HRWorkForceSystemBackend.Controllers
         }
 
 
+        [Authorize]
+        [HttpGet("profile")]
+        public IActionResult GetProfile()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Name);
 
+            if (string.IsNullOrEmpty(email))
+                return Unauthorized("User email not found in token.");
+
+            return Ok(new { email });
+        }
     }
 }

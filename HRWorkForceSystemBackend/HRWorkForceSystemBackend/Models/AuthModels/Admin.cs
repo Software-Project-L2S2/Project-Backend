@@ -1,4 +1,4 @@
-﻿namespace HRWorkForceSystemBackend.Models
+﻿namespace HRWorkForceSystemBackend.Models.AuthModels
 {
     public class Admin
     {
