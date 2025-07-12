@@ -1,8 +1,13 @@
-﻿namespace HRWorkForceSystemBackend.Models.AuthModels;
+﻿using HRWorkForceSystemBackend.Models.UserMoreDetailModels;
+
+using Microsoft.EntityFrameworkCore;
+
+namespace HRWorkForceSystemBackend.Models.AuthModels;
 
 public class WorkforceUser
 {
     public int Id { get; set; }
+   
 
     public string FirstName { get; set; } = string.Empty;
 
@@ -14,4 +19,10 @@ public class WorkforceUser
 
     public string PhoneNumber { get; set; } = string.Empty;
 
+   
+   // public string? WorkforceId { get; set; }
+   // public string Department {  get; set; } = string.Empty;
+   // public string CurrentRole { get; set; }
+
+    public WorkforceProfile WorkforceProfiles{ get; set; }
 }

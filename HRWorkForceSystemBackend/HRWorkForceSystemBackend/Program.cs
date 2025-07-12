@@ -1,7 +1,5 @@
 ﻿using HRWorkForceSystemBackend.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-//using Microsoft.AspNetCore.Authentication.Cookies;
-//using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -59,13 +57,7 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-//.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-//.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-//{
-//    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-//    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-//    options.CallbackPath = "/api/auth/google/callback";
-//});
+
 
 builder.Services.AddAuthorization();
 

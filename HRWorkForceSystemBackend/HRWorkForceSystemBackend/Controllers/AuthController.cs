@@ -246,6 +246,12 @@ namespace HRWorkForceSystemBackend.Controllers
             return NotFound("User not found.");
         }
 
+       
+
+
+
+
+
 
         [Authorize]
         [HttpGet("profile")]

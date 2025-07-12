@@ -1,4 +1,4 @@
-@HRWorkForceSystemBackend_HostAddress = http://localhost:5164
+@HRWorkForceSystemBackend_HostAddress = http://localhost:7142
 
 GET {{HRWorkForceSystemBackend_HostAddress}}/weatherforecast/
 Accept: application/json
