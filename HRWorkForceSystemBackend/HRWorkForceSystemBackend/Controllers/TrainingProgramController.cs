@@ -26,7 +26,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
 
         [Authorize(Roles = "HR")]
-        [HttpPost("training-program")]
+        [HttpPost("create-TrainingProgram")]
         public async Task<IActionResult> CreateTrainingProgram([FromBody] TrainingProgramDto dto)
         {
             var program = new TrainingProgram
@@ -44,7 +44,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
 
         [Authorize(Roles = "HR")]
-        [HttpPut("training-program/{id}")]
+        [HttpPut("Update-TrainingProgram/{id}")]
         public async Task<IActionResult> UpdateTrainingProgram(int id, [FromBody] TrainingProgramDto dto)
         {
             var program = await _context.TrainingPrograms.FindAsync(id);
@@ -60,7 +60,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
 
         [Authorize(Roles = "HR")]
-        [HttpDelete("training-program/{id}")]
+        [HttpDelete("Delete-TrainingProgram/{id}")]
         public async Task<IActionResult> DeleteTrainingProgram(int id)
         {
             var program = await _context.TrainingPrograms.FindAsync(id);
@@ -72,13 +72,15 @@ namespace HRWorkForceSystemBackend.Controllers
         }
 
 
-        [HttpGet("training-programs")]
-        public async Task<IActionResult> GetAllAvailablePrograms()
+        [HttpGet("View-TrainingPrograms")]
+        public async Task<IActionResult> GetAllAvailablePrograms([FromQuery] string? search)
         {
-            var programs = await _context.TrainingPrograms
-                .Where(tp => tp.Availability > 0)
-                .ToListAsync();
+            var query = _context.TrainingPrograms.AsQueryable();
 
+            if (!string.IsNullOrEmpty(search))
+                query = query.Where(tp => tp.Name.Contains(search));
+
+            var programs = await query.Where(tp => tp.Availability > 0).ToListAsync();
             return Ok(programs);
         }
 
@@ -107,7 +109,8 @@ namespace HRWorkForceSystemBackend.Controllers
                 FullName = dto.FullName,
                 Email = dto.Email,
                 PhoneNumber = dto.PhoneNumber,
-                TrainingProgramId = dto.CourseId
+                TrainingProgramId = dto.CourseId,
+                
             };
 
             

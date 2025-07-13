@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HRWorkForceSystemBackend.Models.AuthModels;
 using HRWorkForceSystemBackend.Models.TrainingProgramModels;
+using HRWorkForceSystemBackend.Models.FeedbackModels;
+using HRWorkForceSystemBackend.Models.PromotionModels;
+using HRWorkForceSystemBackend.Models.UserMoreDetailModels;
+
 
 namespace HRWorkForceSystemBackend.Data
 {
@@ -17,6 +21,29 @@ namespace HRWorkForceSystemBackend.Data
         public DbSet<Enrollment> Enrollments { get; set; }
 
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
+
+        public DbSet<Feedback>Feedbacks { get; set; }
+
+        //public DbSet<Promotion> Promotions { get; set; }
+
+        public DbSet<WorkforceProfile> WorkforceProfiles{ get; set; }
+
+        public DbSet<HRProfile> HRProfiles { get; set; }
+
+        //public DbSet<HRProfile> HRProfiles { get; set; }
+
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    // Ensure WorkforceId is unique in WorkforceUser
+        //    modelBuilder.Entity<WorkforceUser>()
+        //        .HasIndex(w => w.WorkforceId)
+        //        .IsUnique();
+
+          
+        //}
 
 
 

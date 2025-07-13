@@ -4,7 +4,7 @@ using HRWorkForceSystemBackend.Models.AuthModels;
 using HRWorkForceSystemBackend.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+using System.Security.Claims; // Required for getting user claims from the token
 using HRWorkForceSystemBackend.DTOs.AuthDTOs;
 
 namespace HRWorkForceSystemBackend.Controllers
@@ -28,7 +28,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
         private static string GenerateOtp() => new Random().Next(100000, 999999).ToString();
 
-        
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
@@ -62,18 +62,30 @@ namespace HRWorkForceSystemBackend.Controllers
         }
 
 
-
-        [Authorize(Roles = "Admin")]
+        // MODIFICATION HERE
+        [Authorize(Roles = "Admin, HR")]
         [HttpPost("register-user")]
         public async Task<IActionResult> RegisterByRole([FromBody] CreateUserDto request)
         {
-            var normalizedRole = request.Role?.Trim().ToLowerInvariant(); // Normalize
+            var normalizedRole = request.Role?.Trim().ToLowerInvariant();
 
             if (string.IsNullOrWhiteSpace(normalizedRole) ||
                 (normalizedRole != "admin" && normalizedRole != "hr" && normalizedRole != "workforce"))
             {
-                return BadRequest("Invalid role.");
+                return BadRequest("Invalid role specified.");
             }
+
+            // --- NEW SECURITY CHECK ---
+            // Get the role of the user making the request from their token
+            var requestingUserRole = User.FindFirstValue(ClaimTypes.Role);
+
+            // If the user making the request has the "HR" role, they can only create 'workforce' users.
+            if (requestingUserRole == "HR" && normalizedRole != "workforce")
+            {
+                // Return a 403 Forbidden response because the action is understood but disallowed.
+                return Forbid("HR users can only register Workforce users.");
+            }
+            // --- END OF SECURITY CHECK ---
 
             var userExists = await _context.Admins.AnyAsync(a => a.Email == request.Email) ||
                              await _context.HRUsers.AnyAsync(h => h.Email == request.Email) ||
@@ -126,7 +138,7 @@ namespace HRWorkForceSystemBackend.Controllers
                 request.Email,
                 "Welcome to Workforce System",
                 $"<p>Hello {request.FirstName},</p><p>Your account has been created as <b>{normalizedRole}</b>." +
-                $"<p> password is {request.Password} </p>"
+                $"<p>Your password is: {request.Password}</p>" // Changed "password is" to "Your password is:" for clarity
             );
 
             return Ok("User registered successfully.");
@@ -147,13 +159,13 @@ namespace HRWorkForceSystemBackend.Controllers
             if (user == null)
                 return NotFound("User not found.");
 
-            
+
             string otp = GenerateOtp();
 
-            
+
             _otpStore[dto.Email] = (otp, DateTime.UtcNow.AddMinutes(10));
 
-            
+
             await _emailService.SendEmailAsync(
                 dto.Email,
                 "Password Reset OTP",
@@ -170,7 +182,7 @@ namespace HRWorkForceSystemBackend.Controllers
             if (string.IsNullOrEmpty(dto.Email))
                 return BadRequest("Email is required.");
 
-           
+
             var userExists = await _context.Admins.AnyAsync(u => u.Email == dto.Email)
                 || await _context.HRUsers.AnyAsync(u => u.Email == dto.Email)
                 || await _context.WorkforceUsers.AnyAsync(u => u.Email == dto.Email);
@@ -178,10 +190,10 @@ namespace HRWorkForceSystemBackend.Controllers
             if (!userExists)
                 return NotFound("User not found.");
 
-            
+
             if (_otpStore.TryGetValue(dto.Email, out var otpInfo))
             {
-                
+
                 if (otpInfo.ExpiresAt > DateTime.UtcNow)
                 {
                     var remainingTime = otpInfo.ExpiresAt - DateTime.UtcNow;
@@ -189,13 +201,13 @@ namespace HRWorkForceSystemBackend.Controllers
                 }
             }
 
-            
+
             string otp = GenerateOtp();
 
-            
+
             _otpStore[dto.Email] = (otp, DateTime.UtcNow.AddMinutes(10));
 
-           
+
             await _emailService.SendEmailAsync(
                 dto.Email,
                 "Password Reset OTP",
@@ -213,7 +225,7 @@ namespace HRWorkForceSystemBackend.Controllers
             if (!_otpStore.TryGetValue(dto.Email, out var otpInfo) || otpInfo.Otp != dto.Otp || otpInfo.ExpiresAt < DateTime.UtcNow)
                 return BadRequest("Invalid or expired OTP.");
 
-            
+
             var admin = await _context.Admins.FirstOrDefaultAsync(u => u.Email == dto.Email);
             if (admin != null)
             {
@@ -223,7 +235,7 @@ namespace HRWorkForceSystemBackend.Controllers
                 return Ok("Password has been reset successfully.");
             }
 
-           
+
             var hr = await _context.HRUsers.FirstOrDefaultAsync(u => u.Email == dto.Email);
             if (hr != null)
             {
@@ -233,7 +245,7 @@ namespace HRWorkForceSystemBackend.Controllers
                 return Ok("Password has been reset successfully.");
             }
 
-            
+
             var workforce = await _context.WorkforceUsers.FirstOrDefaultAsync(u => u.Email == dto.Email);
             if (workforce != null)
             {
@@ -246,7 +258,6 @@ namespace HRWorkForceSystemBackend.Controllers
             return NotFound("User not found.");
         }
 
-
         [Authorize]
         [HttpGet("profile")]
         public IActionResult GetProfile()
@@ -256,7 +267,10 @@ namespace HRWorkForceSystemBackend.Controllers
             if (string.IsNullOrEmpty(email))
                 return Unauthorized("User email not found in token.");
 
-            return Ok(new { email });
+            // You can also return the role for use in the frontend
+            var role = User.FindFirstValue(ClaimTypes.Role);
+
+            return Ok(new { email, role });
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using HRWorkForceSystemBackend.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-//using Microsoft.AspNetCore.Authentication.Cookies;
-//using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -43,6 +41,10 @@ builder.Services.AddCors(options =>
 //Configure Authentication (JWT + Google)
 builder.Services.AddAuthentication(options =>
 {
+    
+    // Explicitly set the schemes for all three actions
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -59,13 +61,7 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-//.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-//.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-//{
-//    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-//    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-//    options.CallbackPath = "/api/auth/google/callback";
-//});
+
 
 builder.Services.AddAuthorization();
 

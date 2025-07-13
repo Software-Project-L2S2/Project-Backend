@@ -4,6 +4,7 @@ using HRWorkForceSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRWorkForceSystemBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250708090930_AddWorkforceProfileTable")]
+    partial class AddWorkforceProfileTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,43 +180,6 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.ToTable("TrainingPrograms");
                 });
 
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.UserMoreDetailModels.HRProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Accounts")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Contact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HRId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HRUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HRUserId")
-                        .IsUnique();
-
-                    b.ToTable("HRProfiles");
-                });
-
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.UserMoreDetailModels.WorkforceProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -222,26 +188,11 @@ namespace HRWorkForceSystemBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<string>("CurrentRole")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("WorkforceId")
                         .HasColumnType("nvarchar(max)");
@@ -268,17 +219,6 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.Navigation("TrainingProgram");
                 });
 
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.UserMoreDetailModels.HRProfile", b =>
-                {
-                    b.HasOne("HRWorkForceSystemBackend.Models.AuthModels.HRUser", "HRUser")
-                        .WithOne("HRProfile")
-                        .HasForeignKey("HRWorkForceSystemBackend.Models.UserMoreDetailModels.HRProfile", "HRUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("HRUser");
-                });
-
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.UserMoreDetailModels.WorkforceProfile", b =>
                 {
                     b.HasOne("HRWorkForceSystemBackend.Models.AuthModels.WorkforceUser", "WorkforceUser")
@@ -288,11 +228,6 @@ namespace HRWorkForceSystemBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("WorkforceUser");
-                });
-
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.AuthModels.HRUser", b =>
-                {
-                    b.Navigation("HRProfile");
                 });
 
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.AuthModels.WorkforceUser", b =>

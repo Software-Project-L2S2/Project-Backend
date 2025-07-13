@@ -3,8 +3,14 @@
     "",
     "\\HRWorkForceSystemBackend",
     "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend",
-    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\Controllers"
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\Controllers",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs\\AuthDTOs",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs\\PromotionDTOs",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs\\TrainingProgramDTOs",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs\\UserManagementDTOs",
+    "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\Services"
   ],
-  "SelectedNode": "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\Program.cs",
+  "SelectedNode": "\\HRWorkForceSystemBackend\\HRWorkForceSystemBackend\\DTOs\\UserManagementDTOs\\UpdateUserDto.cs",
   "PreviewInSolutionExplorer": false
 }
