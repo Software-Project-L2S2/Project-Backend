@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using EmployeeProfileAPI.Data;
+using EmployeeProfileAPI.Models.AuthModels;
+using EmployeeProfileAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using EmployeeProfileAPI.DTOs.AuthDTOs;
-using EmployeeProfileAPI.Services;
-using EmployeeProfileAPI.Models;
-using EmployeeProfileAPI.Models.AuthModels;
-
 
 namespace EmployeeProfileAPI.Controllers
 {
@@ -247,6 +245,12 @@ namespace EmployeeProfileAPI.Controllers
 
             return NotFound("User not found.");
         }
+
+       
+
+
+
+
 
 
         [Authorize]

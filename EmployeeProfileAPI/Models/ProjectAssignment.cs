@@ -1,3 +1,4 @@
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeProfileAPI.Models
@@ -15,7 +16,7 @@ namespace EmployeeProfileAPI.Models
 
         public DateTime AssignedDate { get; set; }
 
-        // Navigation properties should be virtual
+        // ✅ FIXED: Navigation properties should be virtual for EF Core features.
         public virtual Project Project { get; set; }
         public virtual Employee Employee { get; set; }
     }

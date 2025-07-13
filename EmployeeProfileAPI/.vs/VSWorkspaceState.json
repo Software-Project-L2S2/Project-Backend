@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
     "\\DTOs",
-    "\\DTOs\\EmployeeDTOs",
     "\\Models",
     "\\Models\\AuthModels",
     "\\Models\\UserMoreDetailModels",
@@ -11,6 +9,6 @@
     "\\wwwroot",
     "\\wwwroot\\uploads"
   ],
-  "SelectedNode": "\\Models\\EmployeeCreateModel.cs",
+  "SelectedNode": "\\DTOs\\ProfileSkillsDto.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,4 +1,4 @@
-namespace EmployeeProfileAPI.DTOs.UserManagementDTOs
+namespace EmployeeProfileAPI.DTOs.UserDTOs
 {
     public class UpdateUserDto
     {

@@ -1,15 +1,13 @@
-// In folder: DTOs/UserManagementDTOs/UserViewDto.cs
-
-// Make sure this namespace matches EXACTLY in your file.
 namespace EmployeeProfileAPI.DTOs.UserManagementDTOs
 {
+    // This DTO includes the 'Id' field needed by the frontend
     public class UserViewDto
     {
         public int Id { get; set; }
-        public string Role { get; set; } = string.Empty;
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string PhoneNumber { get; set; } = string.Empty;
+        public string Role { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fcOh0BIHsFhE2E8HhkCJ/u68inbRI9q/nNcAAaxBf8A=",
+  "Hash": "tY4gRhFtUtNMgmqZpg+2XQtmFldQB1taNSQnfYBUUFc=",
   "Source": "EmployeeProfileAPI",
   "BasePath": "_content/EmployeeProfileAPI",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg",
+      "SourceId": "EmployeeProfileAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\",
+      "BasePath": "_content/EmployeeProfileAPI",
+      "RelativePath": "images/5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png",
+      "SourceId": "EmployeeProfileAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\",
+      "BasePath": "_content/EmployeeProfileAPI",
+      "RelativePath": "images/88557e65-bebb-4396-b340-6efa228dccb8.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png"
+    },
     {
       "Identity": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\03adda76-309a-44ca-9e0c-6191f2c92523.jpg",
       "SourceId": "EmployeeProfileAPI",
@@ -262,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\fa237e92-64c5-49fe-8342-1abe8716c4fb.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\EMP1014_20250713132830.jpeg",
+      "SourceId": "EmployeeProfileAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\",
+      "BasePath": "_content/EmployeeProfileAPI",
+      "RelativePath": "uploads/profiles/EMP1014_20250713132830.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\profiles\\EMP1014_20250713132830.jpeg"
     },
     {
       "Identity": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250708200613.jpeg",

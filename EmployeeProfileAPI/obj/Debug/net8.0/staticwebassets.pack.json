@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg",
+      "PackagePath": "staticwebassets\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png",
+      "PackagePath": "staticwebassets\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png"
+    },
+    {
       "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\03adda76-309a-44ca-9e0c-6191f2c92523.jpg",
       "PackagePath": "staticwebassets\\uploads\\03adda76-309a-44ca-9e0c-6191f2c92523.jpg"
     },
@@ -51,6 +59,10 @@
     {
       "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\fa237e92-64c5-49fe-8342-1abe8716c4fb.jpeg",
       "PackagePath": "staticwebassets\\uploads\\fa237e92-64c5-49fe-8342-1abe8716c4fb.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\EMP1014_20250713132830.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\EMP1014_20250713132830.jpeg"
     },
     {
       "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250708200613.jpeg",

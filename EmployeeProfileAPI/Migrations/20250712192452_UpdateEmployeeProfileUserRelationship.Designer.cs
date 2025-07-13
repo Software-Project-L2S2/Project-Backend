@@ -4,6 +4,7 @@ using EmployeeProfileAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeProfileAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250712192452_UpdateEmployeeProfileUserRelationship")]
+    partial class UpdateEmployeeProfileUserRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -360,9 +363,6 @@ namespace EmployeeProfileAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("MainUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -378,8 +378,6 @@ namespace EmployeeProfileAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeID");
-
-                    b.HasIndex("MainUserId");
 
                     b.HasIndex("UserID");
 
@@ -419,55 +417,6 @@ namespace EmployeeProfileAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LeaveRequests");
-                });
-
-            modelBuilder.Entity("EmployeeProfileAPI.Models.MainUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MainUsers", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeProfileAPI.Models.PasswordChangeVerification", b =>
@@ -819,10 +768,6 @@ namespace EmployeeProfileAPI.Migrations
 
             modelBuilder.Entity("EmployeeProfileAPI.Models.EmployeeProfile", b =>
                 {
-                    b.HasOne("EmployeeProfileAPI.Models.MainUser", null)
-                        .WithMany("EmployeeProfiles")
-                        .HasForeignKey("MainUserId");
-
                     b.HasOne("EmployeeProfileAPI.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID");
@@ -930,11 +875,6 @@ namespace EmployeeProfileAPI.Migrations
                     b.Navigation("ProfileEducation");
 
                     b.Navigation("ProfileSkills");
-                });
-
-            modelBuilder.Entity("EmployeeProfileAPI.Models.MainUser", b =>
-                {
-                    b.Navigation("EmployeeProfiles");
                 });
 
             modelBuilder.Entity("EmployeeProfileAPI.Models.Project", b =>
