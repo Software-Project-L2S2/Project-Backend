@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProfileSkillsController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ProfileSkillsController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.http||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EmployeeProfileAPI.http||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeProfilesController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\EmployeeProfilesController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EmployeeProfileAPI.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProjectAssignmentsController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ProjectAssignmentsController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Program.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\EmployeeController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\UserManagementController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\UserManagementController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Data\\AppDbContext.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Data\\AppDbContext.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProfileEducationController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -31,20 +55,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\ProfileEducation.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\UserManagementController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\UserManagementController.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Data\\AppDbContext.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Data\\AppDbContext.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\EmployeeProfile.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\EmployeeProfile.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Program.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\AuthModels\\WorkforceUser.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -65,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\UpdateEmployeeDto.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DTOs\\UpdateEmployeeDto.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\EmployeeCreateModel.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -110,13 +118,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACYAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T22:05:50.676Z",
               "EditorCaption": ""
@@ -125,7 +133,7 @@
         },
         {
           "DockedWidth": 195,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -133,7 +141,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeProfileAPI.http",
+              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.http",
+              "RelativeDocumentMoniker": "EmployeeProfileAPI.http",
+              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.http",
+              "RelativeToolTip": "EmployeeProfileAPI.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-14T06:31:41.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeProfileAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.csproj",
+              "RelativeDocumentMoniker": "EmployeeProfileAPI.csproj",
+              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\EmployeeProfileAPI.csproj",
+              "RelativeToolTip": "EmployeeProfileAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-14T06:31:30.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "ProjectAssignmentsController.cs",
+              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProjectAssignmentsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectAssignmentsController.cs",
+              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProjectAssignmentsController.cs",
+              "RelativeToolTip": "Controllers\\ProjectAssignmentsController.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAiwMsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T04:14:15.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAiwGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T02:58:30.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ProfileSkillsDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\ProfileSkillsDto.cs",
               "RelativeDocumentMoniker": "DTOs\\ProfileSkillsDto.cs",
@@ -141,12 +201,11 @@
               "RelativeToolTip": "DTOs\\ProfileSkillsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T04:38:58.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-13T04:38:58.305Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "ProfileEducationDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\ProfileEducationDto.cs",
               "RelativeDocumentMoniker": "DTOs\\ProfileEducationDto.cs",
@@ -154,25 +213,11 @@
               "RelativeToolTip": "DTOs\\ProfileEducationDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T04:38:29.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-13T04:38:29.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeeProfilesController.cs",
-              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeProfilesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EmployeeProfilesController.cs",
-              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\EmployeeProfilesController.cs",
-              "RelativeToolTip": "Controllers\\EmployeeProfilesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T02:32:33.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "ProfileEducation.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\ProfileEducation.cs",
               "RelativeDocumentMoniker": "Models\\ProfileEducation.cs",
@@ -180,12 +225,11 @@
               "RelativeToolTip": "Models\\ProfileEducation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:15:04.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T19:15:04.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "ProfileEducationController.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProfileEducationController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProfileEducationController.cs",
@@ -193,38 +237,24 @@
               "RelativeToolTip": "Controllers\\ProfileEducationController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:09:08.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T19:09:08.835Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProfileSkillsController.cs",
-              "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProfileSkillsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProfileSkillsController.cs",
-              "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\ProfileSkillsController.cs",
-              "RelativeToolTip": "Controllers\\ProfileSkillsController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowDIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:08:34.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Data\\AppDbContext.cs",
               "RelativeToolTip": "Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAGMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-12T19:05:15.921Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\UserManagementDTOs\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "DTOs\\UserManagementDTOs\\UpdateUserDto.cs",
@@ -236,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "ProfileSkill.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\ProfileSkill.cs",
               "RelativeDocumentMoniker": "Models\\ProfileSkill.cs",
@@ -244,12 +274,11 @@
               "RelativeToolTip": "Models\\ProfileSkill.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:02:18.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T19:02:18.663Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "EmployeeProfile.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\EmployeeProfile.cs",
               "RelativeDocumentMoniker": "Models\\EmployeeProfile.cs",
@@ -257,12 +286,11 @@
               "RelativeToolTip": "Models\\EmployeeProfile.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAAADoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:01:44.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T19:01:44.542Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "UpdateProfileRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\UpdateProfileRequestDto.cs",
               "RelativeDocumentMoniker": "DTOs\\UpdateProfileRequestDto.cs",
@@ -274,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -282,11 +310,12 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-12T18:03:22.47Z"
+              "WhenOpened": "2025-07-12T18:03:22.47Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "EmployeeCreateModel.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\EmployeeCreateModel.cs",
               "RelativeDocumentMoniker": "Models\\EmployeeCreateModel.cs",
@@ -298,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "EmployeeDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\EmployeeDTOs\\EmployeeDto.cs",
               "RelativeDocumentMoniker": "DTOs\\EmployeeDTOs\\EmployeeDto.cs",
@@ -310,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "Models\\Employee.cs",
@@ -322,7 +351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "WorkforceUser.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\AuthModels\\WorkforceUser.cs",
               "RelativeDocumentMoniker": "Models\\AuthModels\\WorkforceUser.cs",
@@ -334,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "HRUser.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\AuthModels\\HRUser.cs",
               "RelativeDocumentMoniker": "Models\\AuthModels\\HRUser.cs",
@@ -346,7 +375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "Admin.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Models\\AuthModels\\Admin.cs",
               "RelativeDocumentMoniker": "Models\\AuthModels\\Admin.cs",
@@ -358,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "UpdateEmployeeDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\UpdateEmployeeDto.cs",
               "RelativeDocumentMoniker": "DTOs\\UpdateEmployeeDto.cs",
@@ -370,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "UserViewDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\UserManagementDTOs\\UserViewDto.cs",
               "RelativeDocumentMoniker": "DTOs\\UserManagementDTOs\\UserViewDto.cs",
@@ -382,7 +411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "CreateUserDto.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\DTOs\\AuthDTOs\\CreateUserDto.cs",
               "RelativeDocumentMoniker": "DTOs\\AuthDTOs\\CreateUserDto.cs",
@@ -419,13 +448,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "UserManagementController.cs",
               "DocumentMoniker": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\UserManagementController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserManagementController.cs",
               "ToolTip": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\Controllers\\UserManagementController.cs",
               "RelativeToolTip": "Controllers\\UserManagementController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAGcAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAkwN8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T18:23:43.808Z",
               "EditorCaption": ""

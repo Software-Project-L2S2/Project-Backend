@@ -35,7 +35,8 @@ builder.Services.AddCors(options =>
             policy.WithOrigins("http://localhost:3000") // Your React app's URL
                   .AllowAnyHeader()
                   .AllowAnyMethod()
-                  .AllowCredentials(); // Keep if your frontend sends credentials
+                  .AllowCredentials()
+                  .WithMethods("GET", "POST", "PUT", "DELETE");// Keep if your frontend sends credentials
         });
 });
 

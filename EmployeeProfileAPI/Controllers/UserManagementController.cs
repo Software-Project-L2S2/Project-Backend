@@ -2,18 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using EmployeeProfileAPI.Data;
 using EmployeeProfileAPI.Models;
-using EmployeeProfileAPI.Models.AuthModels;
-using EmployeeProfileAPI.Models.UserMoreDetailModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
+using System;
+using BCrypt.Net;
+using System.Collections.Generic;
+using EmployeeProfileAPI.Models.AuthModels;// Required for List and Dictionary
 
 namespace EmployeeProfileAPI.Controllers
 {
-    // --- DTO DEFINITIONS ---
-    // You can move these to a separate DTOs folder if you prefer.
+    // --- DTO (Data Transfer Object) DEFINITIONS ---
 
     public class CreateUserDto
     {
@@ -27,25 +27,37 @@ namespace EmployeeProfileAPI.Controllers
 
     public class UpdateUserDto
     {
-        [Required] public string Email { get; set; }
+        [Required] [EmailAddress] public string Email { get; set; }
         [Required] public string Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
     }
-    
-    // NEW DTO: This is the data structure that will be sent to the frontend user table.
-    public class RegisteredUserWithEmployeeIdDto
+
+    // MODIFIED DTO: Includes a 'hasProfile' flag.
+    public class RegisteredUserDto
     {
+        public int Id { get; set; }
         public string Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public int? EmployeeId { get; set; } // The EmployeeID from the Employees table.
+        public bool HasProfile { get; set; } // True if an employee profile exists for this email
+    }
+    
+    public class AddEmployeeDto
+    {
+        [Required] public string Name { get; set; }
+        [Required] public string Designation { get; set; }
+        [Required] public string Department { get; set; }
+        [Required] public string Gender { get; set; }
+        [Required] public DateTime StartDate { get; set; }
+        [Required] public int Age { get; set; }
+        [Required] public string Contact { get; set; }
+        [Required] [EmailAddress] public string Email { get; set; }
     }
 
-    // --- CONTROLLER ---
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Admin")]
@@ -58,38 +70,51 @@ namespace EmployeeProfileAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("registered-users")]
-        public async Task<IActionResult> GetRegisteredUsers()
+        // GET: api/UserManagement/users
+        // UPDATED: This now efficiently checks for employee profiles.
+        [HttpGet("users")]
+        public async Task<IActionResult> GetUsers()
         {
-            // This logic performs a join to find the matching EmployeeID for each user based on their email.
-            var adminUsers = await _context.Admins
-                .GroupJoin(_context.Employees, u => u.Email, e => e.Email, (user, employees) => new { user, employees })
-                .SelectMany(x => x.employees.DefaultIfEmpty(),
-                    (x, employee) => new RegisteredUserWithEmployeeIdDto {
-                        Role = "Admin", FirstName = x.user.FirstName, LastName = x.user.LastName, Email = x.user.Email, PhoneNumber = x.user.PhoneNumber,
-                        EmployeeId = employee != null ? (int?)employee.EmployeeID : null
-                    }).ToListAsync();
+            var admins = await _context.Admins.AsNoTracking().ToListAsync();
+            var hrs = await _context.HRUsers.AsNoTracking().ToListAsync();
+            var workforces = await _context.WorkforceUsers.AsNoTracking().ToListAsync();
 
-            var hrUsers = await _context.HRUsers
-                .GroupJoin(_context.Employees, u => u.Email, e => e.Email, (user, employees) => new { user, employees })
-                .SelectMany(x => x.employees.DefaultIfEmpty(),
-                    (x, employee) => new RegisteredUserWithEmployeeIdDto {
-                        Role = "HR", FirstName = x.user.FirstName, LastName = x.user.LastName, Email = x.user.Email, PhoneNumber = x.user.PhoneNumber,
-                        EmployeeId = employee != null ? (int?)employee.EmployeeID : null
-                    }).ToListAsync();
+            var allUserEmails = admins.Select(u => u.Email)
+                                      .Concat(hrs.Select(u => u.Email))
+                                      .Concat(workforces.Select(u => u.Email))
+                                      .Distinct()
+                                      .ToList();
 
-            var workforceUsers = await _context.WorkforceUsers
-                .GroupJoin(_context.Employees, u => u.Email, e => e.Email, (user, employees) => new { user, employees })
-                .SelectMany(x => x.employees.DefaultIfEmpty(),
-                    (x, employee) => new RegisteredUserWithEmployeeIdDto {
-                        Role = "Workforce", FirstName = x.user.FirstName, LastName = x.user.LastName, Email = x.user.Email, PhoneNumber = x.user.PhoneNumber,
-                        EmployeeId = employee != null ? (int?)employee.EmployeeID : null
-                    }).ToListAsync();
+            // Create a HashSet of emails that exist in the Employees table for fast lookups.
+            var emailsWithProfiles = (await _context.Employees
+                .Where(e => allUserEmails.Contains(e.Email))
+                .Select(e => e.Email)
+                .ToListAsync())
+                .ToHashSet();
 
-            var allUsers = adminUsers.Concat(hrUsers).Concat(workforceUsers).ToList();
+            var adminDtos = admins.Select(u => new RegisteredUserDto
+            {
+                Id = u.Id, FirstName = u.FirstName, LastName = u.LastName, Email = u.Email, PhoneNumber = u.PhoneNumber, Role = "Admin",
+                HasProfile = emailsWithProfiles.Contains(u.Email)
+            });
+
+            var hrDtos = hrs.Select(u => new RegisteredUserDto
+            {
+                Id = u.Id, FirstName = u.FirstName, LastName = u.LastName, Email = u.Email, PhoneNumber = u.PhoneNumber, Role = "HR",
+                HasProfile = emailsWithProfiles.Contains(u.Email)
+            });
+
+            var workforceDtos = workforces.Select(u => new RegisteredUserDto
+            {
+                Id = u.Id, FirstName = u.FirstName, LastName = u.LastName, Email = u.Email, PhoneNumber = u.PhoneNumber, Role = "Workforce",
+                HasProfile = emailsWithProfiles.Contains(u.Email)
+            });
+
+            var allUsers = adminDtos.Concat(hrDtos).Concat(workforceDtos).OrderBy(u => u.FirstName).ToList();
             return Ok(allUsers);
         }
 
+        // POST: api/UserManagement/create-user
         [HttpPost("create-user")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
         {
@@ -99,11 +124,11 @@ namespace EmployeeProfileAPI.Controllers
                               await _context.HRUsers.AnyAsync(u => u.Email == dto.Email) ||
                               await _context.WorkforceUsers.AnyAsync(u => u.Email == dto.Email);
 
-            if (emailExists) return BadRequest("Email address is already in use.");
+            if (emailExists) return BadRequest(new { message = "Email address is already registered as a user." });
 
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
-            switch (dto.Role.ToLower())
+            switch (dto.Role.ToLowerInvariant())
             {
                 case "admin": _context.Admins.Add(new Admin { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
                 case "hr": _context.HRUsers.Add(new HRUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
@@ -114,6 +139,7 @@ namespace EmployeeProfileAPI.Controllers
             return Ok(new { message = "User created successfully." });
         }
         
+        // DELETE: api/UserManagement/delete-user
         [HttpDelete("delete-user")]
         public async Task<IActionResult> DeleteUser([FromQuery] string email, [FromQuery] string role)
         {
@@ -139,36 +165,52 @@ namespace EmployeeProfileAPI.Controllers
                 default: return BadRequest("Invalid role.");
             }
             await _context.SaveChangesAsync();
-            return Ok("User deleted successfully.");
+            return Ok(new { message = "User deleted successfully." });
         }
         
+        // PUT: api/UserManagement/update-user
         [HttpPut("update-user")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto request)
         {
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Role)) return BadRequest("Email and role are required.");
             var normalizedRole = request.Role.Trim().ToLowerInvariant();
+            dynamic user = null;
             switch (normalizedRole)
             {
-                case "admin":
-                    var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == request.Email);
-                    if (admin == null) return NotFound("Admin user not found.");
-                    admin.FirstName = request.FirstName; admin.LastName = request.LastName; admin.PhoneNumber = request.PhoneNumber;
-                    break;
-                case "hr":
-                    var hr = await _context.HRUsers.FirstOrDefaultAsync(h => h.Email == request.Email);
-                    if (hr == null) return NotFound("HR user not found.");
-                    hr.FirstName = request.FirstName; hr.LastName = request.LastName; hr.PhoneNumber = request.PhoneNumber;
-                    break;
-                case "workforce":
-                    var workforce = await _context.WorkforceUsers.FirstOrDefaultAsync(w => w.Email == request.Email);
-                    if (workforce == null) return NotFound("Workforce user not found.");
-                    workforce.FirstName = request.FirstName; workforce.LastName = request.LastName; workforce.PhoneNumber = request.PhoneNumber;
-                    break;
-                default:
-                    return BadRequest("Invalid role.");
+                case "admin": user = await _context.Admins.FirstOrDefaultAsync(a => a.Email == request.Email); break;
+                case "hr": user = await _context.HRUsers.FirstOrDefaultAsync(h => h.Email == request.Email); break;
+                case "workforce": user = await _context.WorkforceUsers.FirstOrDefaultAsync(w => w.Email == request.Email); break;
+                default: return BadRequest("Invalid role.");
             }
+            if (user == null) return NotFound("User not found.");
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
             await _context.SaveChangesAsync();
-            return Ok("User updated successfully.");
+            return Ok(new { message = "User updated successfully." });
+        }
+
+        // POST: api/UserManagement/add-employee-details
+        [HttpPost("add-employee-details")]
+        public async Task<IActionResult> AddEmployeeDetails([FromBody] AddEmployeeDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var employeeExists = await _context.Employees.AnyAsync(e => e.Email == dto.Email);
+            if(employeeExists)
+            {
+                return Conflict(new { message = "An employee profile with this email already exists." });
+            }
+            var newEmployee = new Employee 
+            {
+                Name = dto.Name, Designation = dto.Designation, Department = dto.Department, Gender = dto.Gender,
+                StartDate = dto.StartDate, Age = dto.Age, Contact = dto.Contact, Email = dto.Email
+            };
+            _context.Employees.Add(newEmployee); 
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(EmployeeController.GetEmployee), "Employee", new { id = newEmployee.EmployeeID }, newEmployee);
         }
     }
 }

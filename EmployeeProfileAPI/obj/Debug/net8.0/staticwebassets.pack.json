@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg"
     },
     {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\850affb2-95b1-4f26-aa4b-db63eb796f27_WhatsApp Image 2025-07-01 at 22.56.15.jpeg",
+      "PackagePath": "staticwebassets\\images\\850affb2-95b1-4f26-aa4b-db63eb796f27_WhatsApp Image 2025-07-01 at 22.56.15.jpeg"
+    },
+    {
       "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png",
       "PackagePath": "staticwebassets\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png"
     },
@@ -67,6 +71,14 @@
     {
       "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250708200613.jpeg",
       "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250708200613.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250714042459.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250714042459.png"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250714093014.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250714093014.jpeg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EmployeeProfileAPI.Microsoft.AspNetCore.StaticWebAssets.props",
