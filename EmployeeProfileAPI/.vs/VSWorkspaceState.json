@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\DTOs",
+    "\\Models",
+    "\\Models\\AuthModels",
+    "\\Models\\UserMoreDetailModels",
+    "\\Services",
+    "\\wwwroot",
+    "\\wwwroot\\uploads"
+  ],
+  "SelectedNode": "\\Controllers\\LeaveRequestController.cs",
+  "PreviewInSolutionExplorer": false
+}
