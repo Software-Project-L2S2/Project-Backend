@@ -1,46 +1,35 @@
-﻿using HRWorkForceSystemBackend.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-//using Microsoft.AspNetCore.Authentication.Cookies;
-//using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using HRWorkForceSystemBackend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using HRWorkForceSystemBackend.Data;
+using HRWorkForceSystemBackend.Services;
 using HRWorkForceSystemBackend.Models.AuthModels;
 
-
-
-
-
 var builder = WebApplication.CreateBuilder(args);
-
-
-
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-builder.Services.AddLogging();
-
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddScoped<TokenService>();
-builder.Services.AddScoped<EmailService>(); //Added for email sending 
+builder.Services.AddScoped<EmailService>();
 
-//Configure CORS
+
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
+    options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000") // React app URL
+            policy.WithOrigins("http://localhost:3000")
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials(); // Optional: if using cookies/auth
         });
 });
 
-//Configure Authentication (JWT + Google)
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -49,37 +38,26 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,  
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],  
-        ValidateAudience = true,  
-        ValidAudience = builder.Configuration["Jwt:Audience"],  
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["Jwt:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         ClockSkew = TimeSpan.Zero
     };
 });
-//.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-//.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-//{
-//    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-//    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-//    options.CallbackPath = "/api/auth/google/callback";
-//});
 
 builder.Services.AddAuthorization();
 
-// Add controllers & Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkForce API", Version = "v1" });
 
-
-
-
-    // Add JWT Bearer authentication
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -87,7 +65,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGci...\""
+        Description = "Enter 'Bearer {token}'"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -101,14 +79,12 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            Array.Empty<string>()
+            new string[] {}
         }
     });
 });
 
-
 var app = builder.Build();
-
 
 using (var scope = app.Services.CreateScope())
 {
@@ -116,9 +92,7 @@ using (var scope = app.Services.CreateScope())
     await DataSeeder.SeedAdminAsync(services);
 }
 
-
-
-//Use Swagger in Development
+// Enable Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -127,13 +101,11 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "WorkForce API V1");
     });
 }
-app.UseCors("AllowFrontend");
 
-
-
-
-// Configure Middleware
-app.UseHttpsRedirection();
+// ✅ Correct middleware order
+app.UseStaticFiles();
+app.UseCors("AllowReactApp");
+app.UseHttpsRedirection();   
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using HRWorkForceSystemBackend.Models.AuthModels;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using HRWorkForceSystemBackend.Models.TrainingProgramModels;
+using HRWorkForceSystemBackend.Models.AuthModels;
+using HRWorkForceSystemBackend.Models.LeaveModels;
 
 namespace HRWorkForceSystemBackend.Data
 {
@@ -17,6 +20,11 @@ namespace HRWorkForceSystemBackend.Data
         public DbSet<Enrollment> Enrollments { get; set; }
 
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
+
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
+
+        
+
 
 
 
