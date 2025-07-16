@@ -4,6 +4,7 @@ using HRWorkForceSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRWorkForceSystemBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250715225809_AddWorkforceAnalyticsTables")]
+    partial class AddWorkforceAnalyticsTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -487,7 +490,7 @@ namespace HRWorkForceSystemBackend.Migrations
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("Attrition");
+                    b.ToTable("Attritions");
                 });
 
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Movement", b =>
@@ -523,11 +526,14 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.Property<string>("OldPosition")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("Movement");
+                    b.ToTable("Movements");
                 });
 
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.ProjectAssignment", b =>

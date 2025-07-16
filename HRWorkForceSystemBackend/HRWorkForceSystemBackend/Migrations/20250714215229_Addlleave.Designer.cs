@@ -4,6 +4,7 @@ using HRWorkForceSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRWorkForceSystemBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250714215229_Addlleave")]
+    partial class Addlleave
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -462,74 +465,6 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.ToTable("WorkforceProfiles");
                 });
 
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Attrition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AttritionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeID");
-
-                    b.ToTable("Attrition");
-                });
-
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Movement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MovementType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NewDepartment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NewPosition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldDepartment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldPosition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeID");
-
-                    b.ToTable("Movement");
-                });
-
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.ProjectAssignment", b =>
                 {
                     b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
@@ -602,28 +537,6 @@ namespace HRWorkForceSystemBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("WorkforceUser");
-                });
-
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Attrition", b =>
-                {
-                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Movement", b =>
-                {
-                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.AuthModels.HRUser", b =>
