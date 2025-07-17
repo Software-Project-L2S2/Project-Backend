@@ -2,13 +2,21 @@
 using HRWorkForceSystemBackend.Models.AuthModels;
 using HRWorkForceSystemBackend.Models.TrainingProgramModels;
 using HRWorkForceSystemBackend.Models.FeedbackModels;
-using HRWorkForceSystemBackend.Models.PromotionModels;
 using HRWorkForceSystemBackend.Models.UserMoreDetailModels;
+using HRWorkForceSystemBackend.Models.SkillsModels;
+using HRWorkForceSystemBackend.Models.ProjectModels;
+using HRWorkForceSystemBackend.Models.LeaveModels;
+using HRWorkForceSystemBackend.Models.WorkforceModels;
+using HRWorkForceSystemBackend.Controllers;
+
+
+
+
 
 
 namespace HRWorkForceSystemBackend.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -22,15 +30,31 @@ namespace HRWorkForceSystemBackend.Data
 
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
 
-        public DbSet<Feedback>Feedbacks { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         //public DbSet<Promotion> Promotions { get; set; }
 
-        public DbSet<WorkforceProfile> WorkforceProfiles{ get; set; }
+        public DbSet<WorkforceProfile> WorkforceProfiles { get; set; }
 
         public DbSet<HRProfile> HRProfiles { get; set; }
 
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Education> Education { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectAssignment> ProjectAssignments { get; set; }
+
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
+
+        public DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
         //public DbSet<HRProfile> HRProfiles { get; set; }
+        public DbSet<Movement> Movements { get; set; }
+
+        public DbSet<Attrition> Attritions { get; set; }
+
+      
+
+
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,7 +66,7 @@ namespace HRWorkForceSystemBackend.Data
         //        .HasIndex(w => w.WorkforceId)
         //        .IsUnique();
 
-          
+
         //}
 
 

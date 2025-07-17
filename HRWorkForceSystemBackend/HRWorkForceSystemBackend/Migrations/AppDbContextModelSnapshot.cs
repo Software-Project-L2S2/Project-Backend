@@ -128,6 +128,211 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.ToTable("Feedbacks");
                 });
 
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.LeaveModels.EmployeeLeave", b =>
+                {
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("LeavesTaken")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalLeaves")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("EmployeeLeaves");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.LeaveModels.LeaveRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LeaveType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeaveRequests");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.Project", b =>
+                {
+                    b.Property<int>("ProjectID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectID"));
+
+                    b.Property<int>("EmployeeCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Skills")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ProjectID");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.ProjectAssignment", b =>
+                {
+                    b.Property<int>("AssignmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentID"));
+
+                    b.Property<DateTime>("AssignedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("ProjectAssignments");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Education", b =>
+                {
+                    b.Property<int>("EducationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationID"));
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Qualification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EducationID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("Education");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Employee", b =>
+                {
+                    b.Property<int>("EmployeeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeID"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyLogo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("EmployeeID");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Skill", b =>
+                {
+                    b.Property<int>("SkillID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillID"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SkillID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("Skills");
+                });
+
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.TrainingProgramModels.Enrollment", b =>
                 {
                     b.Property<int>("Id")
@@ -257,6 +462,115 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.ToTable("WorkforceProfiles");
                 });
 
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Attrition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AttritionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("Attrition");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Movement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EffectiveDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MovementType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewDepartment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewPosition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldDepartment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldPosition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("Movement");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.ProjectAssignment", b =>
+                {
+                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
+                        .WithMany("ProjectAssignments")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HRWorkForceSystemBackend.Models.ProjectModels.Project", "Project")
+                        .WithMany("ProjectAssignments")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Education", b =>
+                {
+                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
+                        .WithMany("Education")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Skill", b =>
+                {
+                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
+                        .WithMany("Skills")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.TrainingProgramModels.Enrollment", b =>
                 {
                     b.HasOne("HRWorkForceSystemBackend.Models.TrainingProgramModels.TrainingProgram", "TrainingProgram")
@@ -290,6 +604,28 @@ namespace HRWorkForceSystemBackend.Migrations
                     b.Navigation("WorkforceUser");
                 });
 
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Attrition", b =>
+                {
+                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.WorkforceModels.Movement", b =>
+                {
+                    b.HasOne("HRWorkForceSystemBackend.Models.SkillsModels.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.AuthModels.HRUser", b =>
                 {
                     b.Navigation("HRProfile");
@@ -298,6 +634,20 @@ namespace HRWorkForceSystemBackend.Migrations
             modelBuilder.Entity("HRWorkForceSystemBackend.Models.AuthModels.WorkforceUser", b =>
                 {
                     b.Navigation("WorkforceProfiles");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.ProjectModels.Project", b =>
+                {
+                    b.Navigation("ProjectAssignments");
+                });
+
+            modelBuilder.Entity("HRWorkForceSystemBackend.Models.SkillsModels.Employee", b =>
+                {
+                    b.Navigation("Education");
+
+                    b.Navigation("ProjectAssignments");
+
+                    b.Navigation("Skills");
                 });
 #pragma warning restore 612, 618
         }

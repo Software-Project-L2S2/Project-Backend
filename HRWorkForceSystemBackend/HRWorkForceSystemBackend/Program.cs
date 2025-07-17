@@ -66,7 +66,11 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 
 // Add controllers & Swagger
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -124,12 +128,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseCors("AllowFrontend");
-
-
-
-
-// Configure Middleware
 app.UseHttpsRedirection();
+
+
+app.UseStaticFiles(); 
+app.UseRouting();
+// Configure Middleware
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
