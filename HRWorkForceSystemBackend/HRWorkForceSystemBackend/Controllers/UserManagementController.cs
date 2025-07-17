@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HRWorkForceSystemBackend.Models.UserMoreDetailModels;
 using System.Security.Claims; // Required for getting user claims
+using HRWorkForceSystemBackend.Models.AuthModels; // This will find Admin, HRUser, WorkforceUser
+using HRWorkForceSystemBackend.Models;
+using HRWorkForceSystemBackend.Models.SkillsModels;
+
 
 namespace HRWorkForceSystemBackend.Controllers
 {
@@ -26,46 +30,70 @@ namespace HRWorkForceSystemBackend.Controllers
         [HttpGet("registered-users")]
         public async Task<IActionResult> GetRegisteredUsers()
         {
-            var adminUsers = await _context.Admins
-                .Select(a => new RegisteredUserDto
-                {
-                    Role = "Admin",
-                    FirstName = a.FirstName,
-                    LastName = a.LastName,
-                    Email = a.Email,
-                    PhoneNumber = a.PhoneNumber
-                }).ToListAsync();
+            var allUsersQuery = _context.Admins.Select(u => new { u.Email, u.Id, u.FirstName, u.LastName, u.PhoneNumber, Role = "Admin" })
+                .Concat(_context.HRUsers.Select(u => new { u.Email, u.Id, u.FirstName, u.LastName, u.PhoneNumber, Role = "HR" }))
+                .Concat(_context.WorkforceUsers.Select(u => new { u.Email, u.Id, u.FirstName, u.LastName, u.PhoneNumber, Role = "Workforce" }));
 
-            var hrUsers = await _context.HRUsers
-                .Select(h => new RegisteredUserDto
-                {
-                    Role = "HR",
-                    FirstName = h.FirstName,
-                    LastName = h.LastName,
-                    Email = h.Email,
-                    PhoneNumber = h.PhoneNumber
-                }).ToListAsync();
+            var allUsers = await allUsersQuery.AsNoTracking().ToListAsync();
 
-            var workforceUsers = await _context.WorkforceUsers
-                .Select(w => new RegisteredUserDto
-                {
-                    Role = "Workforce",
-                    FirstName = w.FirstName,
-                    LastName = w.LastName,
-                    Email = w.Email,
-                    PhoneNumber = w.PhoneNumber
-                }).ToListAsync();
+            var userEmails = allUsers.Select(u => u.Email).ToList();
+            var emailsWithProfiles = (await _context.Employees
+                .Where(e => userEmails.Contains(e.Email))
+                .Select(e => e.Email)
+                .ToListAsync())
+                .ToHashSet();
 
-            var allUsers = adminUsers
-                .Concat(hrUsers)
-                .Concat(workforceUsers)
-                .OrderBy(u => u.FirstName)
-                .ToList();
+            var result = allUsers.Select(u => new RegisteredUserDto
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                Role = u.Role,
+                HasProfile = emailsWithProfiles.Contains(u.Email)
+            }).OrderBy(u => u.FirstName).ToList();
 
-            return Ok(allUsers);
+            return Ok(result);
         }
 
-        [HttpDelete("delete-user")]
+           // In UserManagementController.cs
+
+[HttpPost("create-user")]
+[Authorize(Roles = "Admin, HR")] // <-- STEP 1: Change this to allow HR access
+public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
+{
+    if (!ModelState.IsValid) return BadRequest(ModelState);
+
+    // --- STEP 2: Add this security logic block ---
+    var requestingUserRole = User.FindFirstValue(ClaimTypes.Role);
+    if (requestingUserRole == "HR" && !dto.Role.Equals("workforce", StringComparison.InvariantCultureIgnoreCase))
+    {
+        return Forbid("HR users can only create Workforce users.");
+    }
+    // --- End of new logic block ---
+
+    var emailExists = await _context.Admins.AnyAsync(u => u.Email == dto.Email) ||
+                      await _context.HRUsers.AnyAsync(u => u.Email == dto.Email) ||
+                      await _context.WorkforceUsers.AnyAsync(u => u.Email == dto.Email);
+
+    if (emailExists) return BadRequest(new { message = "Email address is already registered." });
+
+    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
+    switch (dto.Role.ToLowerInvariant())
+    {
+        case "admin": _context.Admins.Add(new Admin { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+        case "hr": _context.HRUsers.Add(new HRUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+        case "workforce": _context.WorkforceUsers.Add(new WorkforceUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+        default: return BadRequest("Invalid role specified.");
+    }
+
+    await _context.SaveChangesAsync();
+    return Ok(new { message = "User created successfully." });
+}
+
+            [HttpDelete("delete-user")]
         public async Task<IActionResult> DeleteUser([FromQuery] string email, [FromQuery] string role)
         {
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(role))
@@ -139,51 +167,39 @@ namespace HRWorkForceSystemBackend.Controllers
             return Ok(new { Message = "Workforce profile added successfully.", WorkforceId = dto.WorkforceId });
         }
 
-        [HttpPut("update-user")]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto request)
-        {
-            if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Role))
-                return BadRequest("Email and role are required.");
-
-            // Security Check: HR cannot update an Admin
-            var requestingUserRole = User.FindFirstValue(ClaimTypes.Role);
-            if (requestingUserRole == "HR" && request.Role.Trim().ToLowerInvariant() == "admin")
+            [HttpPut("update-user")]
+            public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto request)
             {
-                return Forbid("HR users cannot update Admin users.");
+                if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Role))
+                    return BadRequest("Email and role are required.");
+
+                // Security check from the first file.
+                var requestingUserRole = User.FindFirstValue(ClaimTypes.Role);
+                if (requestingUserRole == "HR" && request.Role.Trim().ToLowerInvariant() == "admin")
+                {
+                    return Forbid("HR users cannot update Admin users.");
+                }
+
+                dynamic user = null;
+                switch (request.Role.Trim().ToLowerInvariant())
+                {
+                    case "admin": user = await _context.Admins.FirstOrDefaultAsync(u => u.Email == request.Email); break;
+                    case "hr": user = await _context.HRUsers.FirstOrDefaultAsync(u => u.Email == request.Email); break;
+                    case "workforce": user = await _context.WorkforceUsers.FirstOrDefaultAsync(u => u.Email == request.Email); break;
+                    default: return BadRequest("Invalid role.");
+                }
+
+                if (user == null) return NotFound("User not found.");
+
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
+                user.PhoneNumber = request.PhoneNumber;
+
+                await _context.SaveChangesAsync();
+                return Ok("User updated successfully.");
             }
 
-            var normalizedRole = request.Role.Trim().ToLowerInvariant();
-
-            switch (normalizedRole)
-            {
-                case "admin":
-                    var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == request.Email);
-                    if (admin == null) return NotFound("Admin user not found.");
-                    admin.FirstName = request.FirstName;
-                    admin.LastName = request.LastName;
-                    admin.PhoneNumber = request.PhoneNumber;
-                    break;
-                case "hr":
-                    var hr = await _context.HRUsers.FirstOrDefaultAsync(h => h.Email == request.Email);
-                    if (hr == null) return NotFound("HR user not found.");
-                    hr.FirstName = request.FirstName;
-                    hr.LastName = request.LastName;
-                    hr.PhoneNumber = request.PhoneNumber;
-                    break;
-                case "workforce":
-                    var workforce = await _context.WorkforceUsers.FirstOrDefaultAsync(w => w.Email == request.Email);
-                    if (workforce == null) return NotFound("Workforce user not found.");
-                    workforce.FirstName = request.FirstName;
-                    workforce.LastName = request.LastName;
-                    workforce.PhoneNumber = request.PhoneNumber;
-                    break;
-                default:
-                    return BadRequest("Invalid role.");
-            }
-
-            await _context.SaveChangesAsync();
-            return Ok("User updated successfully.");
-        }
+           
 
         [HttpPost("add-hr-profile")]
         public async Task<IActionResult> AssignHrProfile([FromBody] HrDetailsDto dto)
@@ -234,5 +250,27 @@ namespace HRWorkForceSystemBackend.Controllers
             // Return the result in a simple JSON object
             return Ok(new { totalEmployees });
         }
+ [HttpPost("add-employee-details")]
+        public async Task<IActionResult> AddEmployeeDetails([FromBody] AddEmployeeDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var employeeExists = await _context.Employees.AnyAsync(e => e.Email == dto.Email);
+            if(employeeExists)
+            {
+                return Conflict(new { message = "An employee profile with this email already exists." });
+            }
+            var newEmployee = new Employee 
+            {
+                Name = dto.Name, Designation = dto.Designation, Department = dto.Department, Gender = dto.Gender,
+                StartDate = dto.StartDate, Age = dto.Age, Contact = dto.Contact, Email = dto.Email
+            };
+            _context.Employees.Add(newEmployee); 
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(EmployeeController.GetEmployee), "Employee", new { id = newEmployee.EmployeeID }, newEmployee);
+        }
+
     }
 }

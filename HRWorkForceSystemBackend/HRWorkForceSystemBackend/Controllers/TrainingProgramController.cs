@@ -73,7 +73,7 @@ namespace HRWorkForceSystemBackend.Controllers
 
 
         [HttpGet("View-TrainingPrograms")]
-        public async Task<IActionResult> GetAllAvailablePrograms([FromQuery] string? search)
+        public async Task<IActionResult> GetAllAvailablePrograms([FromQuery] string search)
         {
             var query = _context.TrainingPrograms.AsQueryable();
 
