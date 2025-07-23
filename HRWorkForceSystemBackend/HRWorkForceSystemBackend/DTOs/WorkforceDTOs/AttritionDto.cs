@@ -12,6 +12,7 @@ namespace HRWorkForceSystemBackend.DTOs.WorkforceDTOs
         public string Department { get; set; }
         public string Position { get; set; }
         public DateTime ExitDate { get; set; }
+        public string Reason { get; set; }
         public string Notes { get; set; }
     }
 }

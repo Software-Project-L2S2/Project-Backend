@@ -109,5 +109,21 @@ namespace HRWorkForceSystemBackend.Controllers
         {
             return _context.LeaveRequests.Any(e => e.Id == id);
         }
+        // In your LeaveRequestsController.cs on the backend
+
+[HttpDelete("{id}")]
+public async Task<IActionResult> DeleteLeaveRequest(int id)
+{
+    var leaveRequest = await _context.LeaveRequests.FindAsync(id);
+    if (leaveRequest == null)
+    {
+        return NotFound();
+    }
+
+    _context.LeaveRequests.Remove(leaveRequest);
+    await _context.SaveChangesAsync();
+
+    return NoContent(); // This is the standard response for a successful delete
+        }
     }
 }

@@ -8,6 +8,7 @@ using HRWorkForceSystemBackend.Models.ProjectModels;
 using HRWorkForceSystemBackend.Models.LeaveModels;
 using HRWorkForceSystemBackend.Models.WorkforceModels;
 using HRWorkForceSystemBackend.Controllers;
+using HRWorkForceSystemBackend.Models;
 
 
 
@@ -52,7 +53,15 @@ namespace HRWorkForceSystemBackend.Data
 
         public DbSet<Attrition> Attritions { get; set; }
 
-      
+        public DbSet<TrainingAssignment> TrainingAssignments { get; set; }
+
+        public DbSet<Announcement> Announcements { get; set; }
+
+        //public DbSet<Message> Messages { get; set; }
+
+
+
+
 
 
 

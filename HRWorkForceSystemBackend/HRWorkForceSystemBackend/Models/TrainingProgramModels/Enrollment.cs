@@ -1,4 +1,10 @@
-﻿namespace HRWorkForceSystemBackend.Models.TrainingProgramModels
+﻿
+using System.Text.Json.Serialization;
+
+
+
+
+namespace HRWorkForceSystemBackend.Models.TrainingProgramModels
 {
     public class Enrollment
     {

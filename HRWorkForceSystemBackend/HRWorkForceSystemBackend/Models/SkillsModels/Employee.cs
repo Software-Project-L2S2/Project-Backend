@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema; 
 using HRWorkForceSystemBackend.Models.ProjectModels;
 // <-- 1. MAKE SURE THIS LINE IS HERE
+using System.Text.Json.Serialization;
 
 namespace HRWorkForceSystemBackend.Models.SkillsModels
 {

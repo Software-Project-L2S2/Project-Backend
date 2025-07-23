@@ -12,5 +12,8 @@ namespace HRWorkForceSystemBackend.DTOs.WorkforceDTOs
         public string Department { get; set; }
         public string Status { get; set; } // This will hold the MovementType
         public DateTime Date { get; set; } // This will hold the EffectiveDate
+    
+        public string NewPosition { get; set; } // This will hold the NewPosition
+        public string Description { get; set; } // This will hold the Description
     }
 }

@@ -1,9 +1,11 @@
+
 #nullable enable // Good practice to have this at the top of the file
 
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HRWorkForceSystemBackend.Models.SkillsModels;
+using System.Text.Json.Serialization;
 
 namespace HRWorkForceSystemBackend.Models.WorkforceModels
 {

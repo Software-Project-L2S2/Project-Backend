@@ -57,41 +57,30 @@ namespace HRWorkForceSystemBackend.Controllers
             return Ok(result);
         }
 
-           // In UserManagementController.cs
+            [HttpPost("create-user")]
+            [Authorize(Roles = "Admin")] // Only Admins can create users.
+            public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-[HttpPost("create-user")]
-[Authorize(Roles = "Admin, HR")] // <-- STEP 1: Change this to allow HR access
-public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
-{
-    if (!ModelState.IsValid) return BadRequest(ModelState);
+                var emailExists = await _context.Admins.AnyAsync(u => u.Email == dto.Email) ||
+                                  await _context.HRUsers.AnyAsync(u => u.Email == dto.Email) ||
+                                  await _context.WorkforceUsers.AnyAsync(u => u.Email == dto.Email);
 
-    // --- STEP 2: Add this security logic block ---
-    var requestingUserRole = User.FindFirstValue(ClaimTypes.Role);
-    if (requestingUserRole == "HR" && !dto.Role.Equals("workforce", StringComparison.InvariantCultureIgnoreCase))
-    {
-        return Forbid("HR users can only create Workforce users.");
-    }
-    // --- End of new logic block ---
+                if (emailExists) return BadRequest(new { message = "Email address is already registered." });
 
-    var emailExists = await _context.Admins.AnyAsync(u => u.Email == dto.Email) ||
-                      await _context.HRUsers.AnyAsync(u => u.Email == dto.Email) ||
-                      await _context.WorkforceUsers.AnyAsync(u => u.Email == dto.Email);
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
-    if (emailExists) return BadRequest(new { message = "Email address is already registered." });
-
-    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
-
-    switch (dto.Role.ToLowerInvariant())
-    {
-        case "admin": _context.Admins.Add(new Admin { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
-        case "hr": _context.HRUsers.Add(new HRUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
-        case "workforce": _context.WorkforceUsers.Add(new WorkforceUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
-        default: return BadRequest("Invalid role specified.");
-    }
-
-    await _context.SaveChangesAsync();
-    return Ok(new { message = "User created successfully." });
-}
+                switch (dto.Role.ToLowerInvariant())
+                {
+                    case "admin": _context.Admins.Add(new Admin { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+                    case "hr": _context.HRUsers.Add(new HRUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+                    case "workforce": _context.WorkforceUsers.Add(new WorkforceUser { FirstName = dto.FirstName, LastName = dto.LastName, Email = dto.Email, PasswordHash = hashedPassword, PhoneNumber = dto.PhoneNumber }); break;
+                    default: return BadRequest("Invalid role specified.");
+                }
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "User created successfully." });
+            }
 
             [HttpDelete("delete-user")]
         public async Task<IActionResult> DeleteUser([FromQuery] string email, [FromQuery] string role)
@@ -271,6 +260,41 @@ public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(EmployeeController.GetEmployee), "Employee", new { id = newEmployee.EmployeeID }, newEmployee);
         }
+       [HttpGet("users-by-role/{role}")]
+// Make sure you have proper authorization, e.g., only an Admin can call this.
+// [Authorize(Roles = "Admin")] 
+public async Task<IActionResult> GetUsersByRole(string role)
+{
+    // Check if the provided role is valid
+    if (string.IsNullOrEmpty(role))
+    {
+        return BadRequest("A role must be provided.");
+    }
 
+    // Use a switch statement to query the correct table based on the role
+    // The role comes from the URL (e.g., "admin", "hr", "workforce")
+    switch (role.ToLower())
+    {
+        case "admin":
+            // Fetches all users from your "Admins" table
+            var adminUsers = await _context.Admins.ToListAsync();
+            return Ok(adminUsers);
+
+        case "hr":
+            // Fetches all users from your "HRUsers" table
+            var hrUsers = await _context.HRUsers.ToListAsync();
+            return Ok(hrUsers);
+
+        case "workforce":
+            // Fetches all users from your "WorkforceUsers" table
+            var workforceUsers = await _context.WorkforceUsers.ToListAsync();
+            return Ok(workforceUsers);
+
+        default:
+            // If the role in the URL is something else, return a Not Found error
+            return NotFound(new { message = $"No users found for the role: {role}" });
+        }
+    }
+   
     }
 }
