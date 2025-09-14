@@ -1,0 +1,101 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg",
+      "PackagePath": "staticwebassets\\images\\5935d9dd-dc36-4a5d-9cc3-32599b16dfe0.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\850affb2-95b1-4f26-aa4b-db63eb796f27_WhatsApp Image 2025-07-01 at 22.56.15.jpeg",
+      "PackagePath": "staticwebassets\\images\\850affb2-95b1-4f26-aa4b-db63eb796f27_WhatsApp Image 2025-07-01 at 22.56.15.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png",
+      "PackagePath": "staticwebassets\\images\\88557e65-bebb-4396-b340-6efa228dccb8.png"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\03adda76-309a-44ca-9e0c-6191f2c92523.jpg",
+      "PackagePath": "staticwebassets\\uploads\\03adda76-309a-44ca-9e0c-6191f2c92523.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\101f9567-544b-48f7-a9e9-f736dee7050e.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\101f9567-544b-48f7-a9e9-f736dee7050e.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\42a8d543-5693-41e2-a152-ef179f2713d2.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\42a8d543-5693-41e2-a152-ef179f2713d2.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\4c9e1dca-a623-404d-8523-096b260233fa.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\4c9e1dca-a623-404d-8523-096b260233fa.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\5d043544-0a3f-4e1c-9ea2-c915a908ff80.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\5d043544-0a3f-4e1c-9ea2-c915a908ff80.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\933ea46c-f97f-4320-a398-cb693a76f764.jpg",
+      "PackagePath": "staticwebassets\\uploads\\933ea46c-f97f-4320-a398-cb693a76f764.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\9603ea38-099f-4a92-846e-bcc3e7b3e0f8.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\9603ea38-099f-4a92-846e-bcc3e7b3e0f8.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\a11ab828-ebcb-4fa1-a71c-9231d8e15f91.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\a11ab828-ebcb-4fa1-a71c-9231d8e15f91.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\cfce9dfc-2938-4095-a468-3c4fe36f226b.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cfce9dfc-2938-4095-a468-3c4fe36f226b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\cfd99b10-fabc-42a1-b1fc-51f5b054715f.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\cfd99b10-fabc-42a1-b1fc-51f5b054715f.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\ef3e14e6-53ff-4ae7-aee7-3d2b93151cca.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ef3e14e6-53ff-4ae7-aee7-3d2b93151cca.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\f8849301-e0ea-4de7-bfe3-a9c4b7250657.jpg",
+      "PackagePath": "staticwebassets\\uploads\\f8849301-e0ea-4de7-bfe3-a9c4b7250657.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\fa237e92-64c5-49fe-8342-1abe8716c4fb.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\fa237e92-64c5-49fe-8342-1abe8716c4fb.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\EMP1014_20250713132830.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\EMP1014_20250713132830.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250708200613.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250708200613.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250714042459.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250714042459.png"
+    },
+    {
+      "Id": "C:\\Users\\SUDESH\\Documents\\GitHub\\workforce-planning\\EmployeeProfileAPI\\wwwroot\\uploads\\profiles\\profile_1_20250714093014.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\profile_1_20250714093014.jpeg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EmployeeProfileAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.EmployeeProfileAPI.props",
+      "PackagePath": "build\\EmployeeProfileAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.EmployeeProfileAPI.props",
+      "PackagePath": "buildMultiTargeting\\EmployeeProfileAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.EmployeeProfileAPI.props",
+      "PackagePath": "buildTransitive\\EmployeeProfileAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
